@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ยืนยันการยกเลิก</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<div class="container py-5 text-center">
+  <h3>คุณต้องการยกเลิกการจองใช่หรือไม่?</h3>
+  <p>{{ booking.booked_by }} - {{ booking.room.name }} ({{ booking.date }})</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger mr-2">ใช่, ยกเลิก</button>
+    <a href="{% url 'booking_list' %}" class="btn btn-secondary">ไม่, กลับไป</a>
+  </form>
+</div>
+</body>
+</html>

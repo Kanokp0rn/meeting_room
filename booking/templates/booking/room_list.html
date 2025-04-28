@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ห้องประชุม</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<div class="container py-5">
+    <h1 class="mb-4 text-center">รายชื่อห้องประชุม</h1>
+    <div class="list-group">
+        {% for room in rooms %}
+        <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+            {{ room.name }}
+            <span class="badge badge-primary badge-pill">{{ room.capacity }} คน</span>
+        </a>
+        {% empty %}
+        <p class="text-muted">ยังไม่มีห้องประชุมในระบบ</p>
+        {% endfor %}
+    </div>
+    <div class="text-center mt-4">
+        <a href="{% url 'booking_create' %}" class="btn btn-success">จองห้องประชุม</a>
+    </div>
+</div>
+</body>
+</html>

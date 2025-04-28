@@ -1,0 +1,33 @@
+[
+    {
+      "model": "booking.room",
+      "pk": 1,
+      "fields": { "name": "ห้องสุวรรณ", "capacity": 15 }
+    },
+    {
+      "model": "booking.room",
+      "pk": 2,
+      "fields": { "name": "ห้องพิมาน", "capacity": 20 }
+    },
+    {
+      "model": "booking.room",
+      "pk": 3,
+      "fields": { "name": "ห้องอรุณ", "capacity": 10 }
+    },
+    {
+      "model": "booking.room",
+      "pk": 4,
+      "fields": { "name": "ห้องเสรี", "capacity": 8 }
+    },
+    {
+      "model": "booking.room",
+      "pk": 5,
+      "fields": { "name": "ห้องปราณ", "capacity": 12 }
+    },
+    {
+      "model": "booking.room",
+      "pk": 6,
+      "fields": { "name": "ห้องกมล", "capacity": 6 }
+    }
+  ]
+  

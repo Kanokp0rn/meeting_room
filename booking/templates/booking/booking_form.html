@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>จองห้องประชุม</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<div class="container py-5">
+  <div class="card mx-auto" style="max-width:600px;">
+    <div class="card-body">
+      <h2 class="card-title text-center mb-4">{% if form.instance.pk %}แก้ไข{% else %}จอง{% endif %}ห้องประชุม</h2>
+      <form method="post">
+        {% csrf_token %}
+        {{ form.room.label_tag }}
+        {{ form.room }}
+
+        {{ form.booked_by.label_tag }}
+        {{ form.booked_by }}
+
+        {{ form.date.label_tag }}
+        {{ form.date }}
+
+        <div class="form-row">
+          <div class="col">{{ form.start_time.label_tag }}{{ form.start_time }}</div>
+          <div class="col">{{ form.end_time.label_tag }}{{ form.end_time }}</div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block mt-4">บันทึก</button>
+      </form>
+      {% if form.instance.pk %}
+      <form method="post" action="{% url 'booking_delete' form.instance.pk %}" class="mt-2">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger btn-block">ยกเลิกการจอง</button>
+      </form>
+      {% endif %}
+      <div class="mt-3 text-center"><a href="{% url 'booking_list' %}">กลับไปหน้ารายการจอง</a></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

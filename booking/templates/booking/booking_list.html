@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>รายการจองห้องประชุม</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<div class="container py-5">
+  <h1 class="mb-4 text-center">รายการจองห้องประชุม</h1>
+  <form method="get" class="form-inline mb-3">
+    <input type="text" name="q" value="{{ q }}" class="form-control mr-2" placeholder="ค้นหาชื่อผู้จอง">
+    <select name="room" class="form-control mr-2">
+      <option value="">--- ห้อง ---</option>
+      {% for r in rooms %}
+      <option value="{{ r.id }}" {% if room_filter == r.id|stringformat:"s" %}selected{% endif %}>{{ r.name }}</option>
+      {% endfor %}
+    </select>
+    <input type="date" name="date" value="{{ date_filter }}" class="form-control mr-2">
+    <button type="submit" class="btn btn-primary">ค้นหา</button>
+  </form>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ชื่อผู้จอง</th><th>ห้อง</th><th>วันที่</th><th>เวลา</th><th>จัดการ</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for b in bookings %}
+      <tr>
+        <td>{{ b.booked_by }}</td>
+        <td>{{ b.room.name }}</td>
+        <td>{{ b.date }}</td>
+        <td>{{ b.start_time }} - {{ b.end_time }}</td>
+        <td>
+          <a href="{% url 'booking_edit' b.pk %}" class="btn btn-sm btn-outline-secondary">แก้ไข</a>
+          <a href="{% url 'booking_delete' b.pk %}" class="btn btn-sm btn-outline-danger">ยกเลิก</a>
+        </td>
+      </tr>
+      {% empty %}
+      <tr><td colspan="5" class="text-center">ยังไม่มีการจอง</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <div class="text-center mt-4">
+    <a href="{% url 'booking_create' %}" class="btn btn-success">สร้างการจองใหม่</a>
+  </div>
+</div>
+</body>
+</html>
